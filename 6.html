@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获奖情况 - 马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .awards-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .awards-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .awards-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #b388ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .material-icons {
+            margin-right: 10px;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .award-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .award-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .award-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .award-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .award-card:hover .award-image img {
+            transform: scale(1.1);
+        }
+
+        .award-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .award-year {
+            font-size: 16px;
+            color: #b388ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .award-year .material-icons {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .award-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .award-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+        }
+
+        .award-category {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #b388ff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .award-category .material-icons {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .highlight-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .highlight-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b388ff;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .highlight-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            background: rgba(179, 136, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .highlight-icon {
+            font-size: 40px;
+            color: #b388ff;
+            margin-bottom: 15px;
+        }
+
+        .highlight-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b388ff;
+        }
+
+        .highlight-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #b388ff;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="awards-header">
+        <div class="container">
+            <h1 class="page-title">获奖情况</h1>
+            <p class="awards-intro">马嘉祺凭借出色的音乐才华和表演实力，获得了多项重要奖项的认可。这些奖项不仅是对他个人能力的肯定，也是他在演艺道路上不断成长的见证。</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="awards-section">
+            <h2 class="section-title">
+                <i class="material-icons">emoji_events</i>
+                主要奖项
+            </h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/36/368914f6.jpg" alt="全球音乐华鼎奖">
+                    </div>
+                    <div class="award-details">
+                        <div class="award-year">
+                            <i class="material-icons">event</i> 2023年12月
+                        </div>
+                        <h3 class="award-title">第37届全球音乐华鼎奖</h3>
+                        <p class="award-description">马嘉祺凭借首张个人EP《所以开始既定重启的星期一》获得华语最具潜力歌手奖，这是对他音乐才华的高度认可。</p>
+                        <div class="award-category">
+                            <i class="material-icons">music_note</i>
+                            华语最具潜力歌手奖
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/f0/f0ed9f6a.jpg" alt="声生不息宝岛季">
+                    </div>
+                    <div class="award-details">
+                        <div class="award-year">
+                            <i class="material-icons">event</i> 2025年
+                        </div>
+                        <h3 class="award-title">声生不息宝岛季</h3>
+                        <p class="award-description">
+                            在《声生不息宝岛季》中，马嘉祺凭借出色的演唱实力和舞台表现力，获得最佳新人奖。评委评价他"小马是无法忽视的一股后浪，没有他hold不住的歌"。</p>
+                        <div class="award-category">
+                            <i class="material-icons">star</i>
+                            最佳新人奖
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/1c/1c7a9896.jpg" alt="粉丝嘉年华">
+                    </div>
+                    <div class="award-details">
+                        <div class="award-year">
+                            <i class="material-icons">event</i> 2018年8月
+                        </div>
+                        <h3 class="award-title">第三届粉丝嘉年华年度盛典</h3>
+                        <p class="award-description">随组合参加第三届粉丝嘉年华年度盛典，获得粉丝奖项"假奶协会终身名誉会员"，这是他早期获得的重要粉丝认可。</p>
+                        <div class="award-category">
+                            <i class="material-icons">favorite</i>
+                            假奶协会终身名誉会员
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-section">
+            <h2 class="highlight-title">荣誉数据</h2>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <i class="material-icons highlight-icon">album</i>
+                    <div class="highlight-number">2</div>
+                    <div class="highlight-text">个人音乐作品</div>
+                </div>
+                <div class="highlight-card">
+                    <i class="material-icons highlight-icon">groups</i>
+                    <div class="highlight-number">10+</div>
+                    <div class="highlight-text">组合音乐作品</div>
+                </div>
+                <div class="highlight-card">
+                    <i class="material-icons highlight-icon">movie</i>
+                    <div class="highlight-number">5+</div>
+                    <div class="highlight-text">影视作品</div>
+                </div>
+                <div class="highlight-card">
+                    <i class="material-icons highlight-icon">live_tv</i>
+                    <div class="highlight-number">6+</div>
+                    <div class="highlight-text">综艺节目</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote">"每一个奖项都是对我努力的肯定，也是对我未来道路的鼓励。我会继续努力，用更好的作品回报大家的支持和喜爱。"</div>
+            <div class="quote-author">— 马嘉祺</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>演艺经历 - 马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .career-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .career-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .career-content {
+            margin-bottom: 80px;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .career-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .career-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .career-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .career-card:hover .career-image img {
+            transform: scale(1.1);
+        }
+
+        .career-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-year {
+            font-size: 16px;
+            color: #b388ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .career-year .material-icons {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .career-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .career-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+        }
+
+        .career-role {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #b388ff;
+            font-weight: 500;
+        }
+
+        .milestone-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .milestone-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b388ff;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .milestone-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .milestone-card:hover {
+            background: rgba(179, 136, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .milestone-icon {
+            font-size: 40px;
+            color: #b388ff;
+            margin-bottom: 15px;
+        }
+
+        .milestone-year {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .milestone-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #b388ff;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="career-header">
+        <div class="container">
+            <h1 class="page-title">演艺经历</h1>
+            <p class="career-intro">从童星出道到成为时代少年团队长，马嘉祺凭借出色的表演天赋和不懈的努力，在演艺道路上不断成长，为观众带来了许多精彩的作品。</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="career-content">
+            <div class="career-grid">
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/4e/4e913d79.jpg" alt="触摸阳光">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">movie</i> 2013年
+                        </div>
+                        <h3 class="career-title">触摸阳光</h3>
+                        <p class="career-description">马嘉祺主演的公益微电影，在片中饰演因意外致盲的10岁男孩平安。这是他的首次影视作品，展现了他早期的表演天赋。</p>
+                        <div class="career-role">角色：平安</div>
+                    </div>
+                </div>
+
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/b1/b1e93bd9.jpg" alt="快乐星球5">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">movie</i> 2015年
+                        </div>
+                        <h3 class="career-title">快乐星球5</h3>
+                        <p class="career-description">
+                            马嘉祺首次担纲主演的少儿科幻剧，在剧中饰演带小帅一角。该剧于2020年12月23日在优酷上线播出，其中第5集演唱的歌曲《什么是快乐星球》于2021年上半年在短视频平台走红。</p>
+                        <div class="career-role">角色：带小帅</div>
+                    </div>
+                </div>
+
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/26/26091846.jpg" alt="第二人生">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">movie</i> 2017年
+                        </div>
+                        <h3 class="career-title">第二人生</h3>
+                        <p class="career-description">成为时代峰峻旗下TF家族的练习生后，参演TF家族自制剧《第二人生》，在剧中饰演简亓一角，进一步展现了他的表演才华。</p>
+                        <div class="career-role">角色：简亓</div>
+                    </div>
+                </div>
+
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/83/8338c2c9.jpg" alt="台风少年团">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">music_note</i> 2018年
+                        </div>
+                        <h3 class="career-title">台风少年团</h3>
+                        <p class="career-description">加入组合台风少年团，凭借单曲《狼少年》以歌手的身份出道，自此被大众熟知。这一时期，马嘉祺开始全面发展自己的音乐和表演才华。</p>
+                        <div class="career-role">身份：歌手</div>
+                    </div>
+                </div>
+
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/36/368914f6.jpg" alt="时代少年团">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">music_note</i> 2019年
+                        </div>
+                        <h3 class="career-title">时代少年团</h3>
+                        <p class="career-description">组合台风少年团解散重组，马嘉祺通过综艺节目《台风少年蜕变之战》当选为组合时代少年团的C位与队长，开启了他作为团队领导者的新篇章。
+                        </p>
+                        <div class="career-role">身份：队长、C位</div>
+                    </div>
+                </div>
+
+                <div class="career-card">
+                    <div class="career-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/e9/e926c6d5.jpg" alt="万水朝东">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-year">
+                            <i class="material-icons">theater_comedy</i> 2022年
+                        </div>
+                        <h3 class="career-title">万水朝东</h3>
+                        <p class="career-description">首次参演话剧《万水朝东》，这是马嘉祺在表演领域的又一次尝试和突破，展现了他作为演员的多面性和可塑性。</p>
+                        <div class="career-role">身份：话剧演员</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="milestone-section">
+            <h2 class="milestone-title">演艺生涯里程碑</h2>
+            <div class="milestone-grid">
+                <div class="milestone-card">
+                    <i class="material-icons milestone-icon">star</i>
+                    <div class="milestone-year">2011年</div>
+                    <div class="milestone-text">首次参加选秀节目《中国达人秀》，获得河南赛区优秀奖</div>
+                </div>
+                <div class="milestone-card">
+                    <i class="material-icons milestone-icon">movie</i>
+                    <div class="milestone-year">2015年</div>
+                    <div class="milestone-text">主演《快乐星球5》，正式进入演艺圈</div>
+                </div>
+                <div class="milestone-card">
+                    <i class="material-icons milestone-icon">music_note</i>
+                    <div class="milestone-year">2018年</div>
+                    <div class="milestone-text">随台风少年团出道，发行单曲《狼少年》</div>
+                </div>
+                <div class="milestone-card">
+                    <i class="material-icons milestone-icon">group</i>
+                    <div class="milestone-year">2019年</div>
+                    <div class="milestone-text">成为时代少年团队长，开启团队新篇章</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote">"每一次表演都是一次成长，每一个角色都是一次挑战。我希望通过不断尝试，让自己的表演更加丰富多彩，给观众带来更多惊喜。"</div>
+            <div class="quote-author">— 马嘉祺</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

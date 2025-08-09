@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #b388ff;
+        }
+
+        .intro {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #b388ff;
+            color: #1a237e;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .latest-news {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            font-size: 14px;
+            color: #b388ff;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .news-excerpt {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>马嘉祺</h1>
+                    <div class="subtitle">时代少年团队长 · 歌手 · 演员</div>
+                    <p class="intro">
+                        2002年12月12日出生于河南省郑州市，中国内地流行乐男歌手、演员。就读于中央戏剧学院2022级话剧影视表演本科班。凭借独特的嗓音和出色的舞台表现力，成为新生代艺人中的佼佼者。</p>
+                    <a href="#" class="cta-button">了解更多</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/e2/e29fdfc1.jpg" alt="马嘉祺">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-news">
+        <div class="container">
+            <h2 class="section-title">最新动态</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/83/8338c2c9.jpg" alt="马嘉祺舞台表演">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2025年5月</div>
+                        <h3 class="news-title">马嘉祺《歌手2025》精彩表现</h3>
+                        <p class="news-excerpt">在最新一期《歌手2025》中，马嘉祺凭借出色的演唱实力和舞台表现，获得观众和评委的一致好评。</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/26/262a5a4c.jpg" alt="马嘉祺综艺节目">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2025年4月</div>
+                        <h3 class="news-title">新专辑《加冠》发布</h3>
+                        <p class="news-excerpt">马嘉祺随时代少年团发布新专辑《加冠》，展现更加成熟的音乐风格和艺术表达。</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/36/368914f6.jpg" alt="马嘉祺获奖">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2023年12月</div>
+                        <h3 class="news-title">荣获华鼎奖最具潜力歌手</h3>
+                        <p class="news-excerpt">马嘉祺凭借首张个人EP《所以开始既定重启的星期一》获得第37届全球音乐华鼎奖华语最具潜力歌手奖。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粉丝互动 - 马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .interaction-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .interaction-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .interaction-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #b388ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .material-icons {
+            margin-right: 10px;
+        }
+
+        .message-board {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+        }
+
+        .message-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #b388ff;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #b388ff;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: #b388ff;
+            color: #1a237e;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .submit-button:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .message-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .message-author {
+            font-size: 18px;
+            font-weight: 600;
+            color: #b388ff;
+        }
+
+        .message-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .message-content {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .social-section {
+            margin-bottom: 60px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            background: rgba(179, 136, 255, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .social-icon {
+            font-size: 48px;
+            color: #b388ff;
+            margin-bottom: 20px;
+        }
+
+        .social-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .social-description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: #b388ff;
+            color: #1a237e;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #ffffff;
+        }
+
+        .events-section {
+            margin-bottom: 60px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-details {
+            padding: 20px;
+        }
+
+        .event-date {
+            font-size: 14px;
+            color: #b388ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-date .material-icons {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        .event-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .event-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fan-photos {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .photos-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b388ff;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+
+        .photo-caption {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #b388ff;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="interaction-header">
+        <div class="container">
+            <h1 class="page-title">粉丝互动</h1>
+            <p class="interaction-intro">欢迎来到马嘉祺的粉丝互动区！在这里，你可以留言分享你的想法，查看最新的粉丝活动，与其他粉丝交流互动。让我们一起支持马嘉祺，见证他的成长与进步！</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="interaction-section">
+            <h2 class="section-title">
+                <i class="material-icons">forum</i>
+                留言板
+            </h2>
+            <div class="message-board">
+                <form class="message-form">
+                    <div class="form-group">
+                        <label class="form-label">昵称</label>
+                        <input type="text" class="form-input" placeholder="请输入您的昵称">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">留言内容</label>
+                        <textarea class="form-textarea" placeholder="写下您想对马嘉祺说的话..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">提交留言</button>
+                </form>
+
+                <div class="messages-list">
+                    <div class="message-item">
+                        <div class="message-header">
+                            <div class="message-author">小马粉丝</div>
+                            <div class="message-date">2025-07-15</div>
+                        </div>
+                        <div class="message-content">嘉祺加油！你的音乐真的很棒，每次听你的歌都能感受到你的用心和努力。期待你更多精彩的作品！</div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-header">
+                            <div class="message-author">星辰大海</div>
+                            <div class="message-date">2025-07-10</div>
+                        </div>
+                        <div class="message-content">在《歌手2025》的表现太惊艳了！你的舞台魅力和唱功都让人印象深刻，继续加油，我们永远支持你！</div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-header">
+                            <div class="message-author">快乐星球</div>
+                            <div class="message-date">2025-07-05</div>
+                        </div>
+                        <div class="message-content">从《快乐星球5》就开始喜欢你了，看着你一步步成长，真的很为你骄傲！希望你未来越来越好！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-section">
+            <h2 class="section-title">
+                <i class="material-icons">share</i>
+                社交媒体
+            </h2>
+            <div class="social-grid">
+                <div class="social-card">
+                    <i class="material-icons social-icon">music_note</i>
+                    <h3 class="social-title">音乐平台</h3>
+                    <p class="social-description">在各大音乐平台关注马嘉祺，第一时间收听他的最新音乐作品。</p>
+                    <a href="#" class="social-link">立即关注</a>
+                </div>
+                <div class="social-card">
+                    <i class="material-icons social-icon">videocam</i>
+                    <h3 class="social-title">视频平台</h3>
+                    <p class="social-description">在视频平台观看马嘉祺的MV、舞台表演和综艺节目片段。</p>
+                    <a href="#" class="social-link">观看视频</a>
+                </div>
+                <div class="social-card">
+                    <i class="material-icons social-icon">chat</i>
+                    <h3 class="social-title">官方社区</h3>
+                    <p class="social-description">加入官方粉丝社区，与其他粉丝一起交流讨论，获取最新资讯。</p>
+                    <a href="#" class="social-link">加入社区</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="events-section">
+            <h2 class="section-title">
+                <i class="material-icons">event</i>
+                粉丝活动
+            </h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/83/8338c2c9.jpg" alt="线上见面会">
+                    </div>
+                    <div class="event-details">
+                        <div class="event-date">
+                            <i class="material-icons">event</i> 2025年8月15日
+                        </div>
+                        <h3 class="event-title">线上粉丝见面会</h3>
+                        <p class="event-description">马嘉祺将与粉丝进行线上互动，分享最新音乐作品和幕后故事，还有机会获得签名专辑。</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/26/262a5a4c.jpg" alt="生日应援">
+                    </div>
+                    <div class="event-details">
+                        <div class="event-date">
+                            <i class="material-icons">event</i> 2025年12月12日
+                        </div>
+                        <h3 class="event-title">生日应援活动</h3>
+                        <p class="event-description">为马嘉祺庆祝生日，粉丝将组织线上线下应援活动，包括公益捐赠和灯光秀。</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/36/368914f6.jpg" alt="专辑签售会">
+                    </div>
+                    <div class="event-details">
+                        <div class="event-date">
+                            <i class="material-icons">event</i> 2025年9月20日
+                        </div>
+                        <h3 class="event-title">新专辑签售会</h3>
+                        <p class="event-description">马嘉祺将在北京、上海、广州等城市举办新专辑签售会，与粉丝近距离互动。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fan-photos">
+            <h2 class="photos-title">粉丝照片墙</h2>
+            <div class="photos-grid">
+                <div class="photo-item">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/3d/3dd9a837.jpg" alt="粉丝照片1">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">来自上海的粉丝</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/49/495d76fb.jpg" alt="粉丝照片2">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">广州演唱会应援</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/d9/d9912918.jpg" alt="粉丝照片3">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">生日应援活动</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/1c/1c7a9896.jpg" alt="粉丝照片4">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">粉丝见面会合影</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote">"感谢每一位粉丝的支持和陪伴，是你们的鼓励让我不断前进。我会继续努力，用更好的作品回报大家的喜爱。"</div>
+            <div class="quote-author">— 马嘉祺</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐作品 - 马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .music-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .music-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .music-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #b388ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .material-icons {
+            margin-right: 10px;
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .music-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .album-cover {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .music-card:hover .album-cover img {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .music-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(179, 136, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: #b388ff;
+            transform: scale(1.1);
+        }
+
+        .play-button .material-icons {
+            font-size: 30px;
+            color: #1a237e;
+        }
+
+        .music-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-type {
+            font-size: 14px;
+            color: #b388ff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .music-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .music-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .music-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+        }
+
+        .track-list {
+            margin-top: 15px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .track-item:last-child {
+            border-bottom: none;
+        }
+
+        .track-number {
+            width: 25px;
+            color: #b388ff;
+            font-size: 14px;
+        }
+
+        .track-name {
+            flex-grow: 1;
+            font-size: 16px;
+        }
+
+        .track-duration {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .featured-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .featured-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b388ff;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .featured-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .featured-card:hover {
+            background: rgba(179, 136, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .featured-icon {
+            font-size: 40px;
+            color: #b388ff;
+            margin-bottom: 15px;
+        }
+
+        .featured-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .featured-description {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #b388ff;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="music-header">
+        <div class="container">
+            <h1 class="page-title">音乐作品</h1>
+            <p class="music-intro">马嘉祺拥有出色的唱功，嗓音独特，音域宽广，能驾驭多种风格的歌曲。舞台上的他唱歌时情感充沛，具有很强的感染力。以下是他的个人音乐作品和与时代少年团合作的代表作品。</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="music-section">
+            <h2 class="section-title">
+                <i class="material-icons">album</i>
+                个人作品
+            </h2>
+            <div class="music-grid">
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/e5/e5a02d75.jpg" alt="所以开始既定重启的星期一">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">个人EP</div>
+                        <h3 class="music-title">所以开始既定重启的星期一</h3>
+                        <div class="music-date">2023年</div>
+                        <p class="music-description">马嘉祺的首张个人EP，凭借此作品获得第37届全球音乐华鼎奖华语最具潜力歌手奖。</p>
+                        <div class="track-list">
+                            <div class="track-item">
+                                <div class="track-number">1</div>
+                                <div class="track-name">不肯睡的灵魂</div>
+                                <div class="track-duration">3:59</div>
+                            </div>
+                            <div class="track-item">
+                                <div class="track-number">2</div>
+                                <div class="track-name">Forever Child</div>
+                                <div class="track-duration">4:02</div>
+                            </div>
+                            <div class="track-item">
+                                <div class="track-number">3</div>
+                                <div class="track-name">偏不</div>
+                                <div class="track-duration">4:41</div>
+                            </div>
+                            <div class="track-item">
+                                <div class="track-number">4</div>
+                                <div class="track-name">Fri Friday</div>
+                                <div class="track-duration">3:17</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/3d/3dd9a837.jpg" alt="偷">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">个人单曲</div>
+                        <h3 class="music-title">偷</h3>
+                        <div class="music-date">2022年</div>
+                        <p class="music-description">马嘉祺发行的首支个人单曲，展现了他独特的音乐风格和情感表达能力。</p>
+                    </div>
+                </div>
+
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/49/495d76fb.jpg" alt="蜉蝣">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">个人单曲</div>
+                        <h3 class="music-title">蜉蝣</h3>
+                        <div class="music-date">2023年</div>
+                        <p class="music-description">马嘉祺的第二支个人单曲，以细腻的情感表达和独特的音乐风格获得广泛好评。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-section">
+            <h2 class="section-title">
+                <i class="material-icons">groups</i>
+                时代少年团作品
+            </h2>
+            <div class="music-grid">
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/1c/1c7a9896.jpg" alt="狼少年">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">组合单曲</div>
+                        <h3 class="music-title">狼少年</h3>
+                        <div class="music-date">2018年</div>
+                        <p class="music-description">马嘉祺随台风少年团发行的首支单曲，也是他作为歌手身份出道的作品。</p>
+                    </div>
+                </div>
+
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/d9/d9912918.jpg" alt="朱雀">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">组合单曲</div>
+                        <h3 class="music-title">朱雀</h3>
+                        <div class="music-date">2021年</div>
+                        <p class="music-description">时代少年团演唱的歌曲，马嘉祺在歌曲中展现了他独特的音色和情感表达能力。</p>
+                    </div>
+                </div>
+
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/da/da7ec1cf.jpg" alt="渐暖">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">组合单曲</div>
+                        <h3 class="music-title">渐暖</h3>
+                        <div class="music-date">2022年</div>
+                        <p class="music-description">时代少年团演唱的歌曲，以温暖的旋律和歌词传递青春的美好。</p>
+                    </div>
+                </div>
+
+                <div class="music-card">
+                    <div class="album-cover">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/ec/ec665285.jpg" alt="要你管">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="music-type">组合单曲</div>
+                        <h3 class="music-title">要你管</h3>
+                        <div class="music-date">2020年</div>
+                        <p class="music-description">时代少年团演唱的歌曲，收录于专辑《舞象之年》，2021年12月11日夺得第三届TMEA腾讯音乐娱乐盛典年度十大金曲奖。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-section">
+            <h2 class="featured-title">音乐风格特点</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <i class="material-icons featured-icon">music_note</i>
+                    <div class="featured-name">独特嗓音</div>
+                    <div class="featured-description">马嘉祺拥有独特的嗓音，音色清亮且富有辨识度，能够轻松驾驭高音和低音。</div>
+                </div>
+                <div class="featured-card">
+                    <i class="material-icons featured-icon">sentiment_very_satisfied</i>
+                    <div class="featured-name">情感表达</div>
+                    <div class="featured-description">在演唱中能够准确传达歌曲情感，舞台表现力强，具有很强的感染力。</div>
+                </div>
+                <div class="featured-card">
+                    <i class="material-icons featured-icon">auto_awesome</i>
+                    <div class="featured-name">风格多样</div>
+                    <div class="featured-description">能够驾驭多种音乐风格，从流行到民谣，从抒情到摇滚，展现出全面的音乐才华。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote">"音乐是我表达情感的方式，每一首歌都是我内心世界的一部分。希望通过我的音乐，能够触动更多人的心灵。"</div>
+            <div class="quote-author">— 马嘉祺</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

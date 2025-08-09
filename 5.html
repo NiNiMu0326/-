@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综艺表现 - 马嘉祺官方网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b388ff;
+        }
+
+        .variety-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b388ff;
+        }
+
+        .variety-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .variety-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #b388ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .material-icons {
+            margin-right: 10px;
+        }
+
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .variety-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .variety-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .variety-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .variety-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .variety-card:hover .variety-image img {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .variety-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(179, 136, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: #b388ff;
+            transform: scale(1.1);
+        }
+
+        .play-button .material-icons {
+            font-size: 30px;
+            color: #1a237e;
+        }
+
+        .variety-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .variety-type {
+            font-size: 14px;
+            color: #b388ff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .variety-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .variety-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .variety-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+        }
+
+        .highlight {
+            color: #b388ff;
+            font-weight: 500;
+        }
+
+        .award-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(179, 136, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px 12px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #b388ff;
+        }
+
+        .award-badge .material-icons {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        .moments-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .moments-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b388ff;
+        }
+
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .moment-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .moment-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .moment-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .moment-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+
+        .moment-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .moment-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 18px;
+            color: #b388ff;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b388ff;
+            color: #1a237e;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #b388ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #7c4dff;
+            bottom: -100px;
+            left: -50px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #651fff;
+            top: 50%;
+            left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">马嘉祺</div>
+                <ul class="nav-links">
+                    <li><a href="1.html">首页</a></li>
+                    <li><a href="2.html">个人资料</a></li>
+                    <li><a href="3.html">演艺经历</a></li>
+                    <li><a href="4.html">音乐作品</a></li>
+                    <li><a href="5.html">综艺表现</a></li>
+                    <li><a href="6.html">获奖情况</a></li>
+                    <li><a href="7.html">粉丝互动</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="variety-header">
+        <div class="container">
+            <h1 class="page-title">综艺表现</h1>
+            <p class="variety-intro">马嘉祺在各类综艺节目中展现出多才多艺的一面，无论是音乐竞演还是娱乐互动，他都能以出色的表现和独特的魅力赢得观众的喜爱。以下是他在主要综艺节目中的精彩表现。</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="variety-section">
+            <h2 class="section-title">
+                <i class="material-icons">live_tv</i>
+                主要综艺表现
+            </h2>
+            <div class="variety-grid">
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/f0/f0ed9f6a.jpg" alt="声生不息宝岛季">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">音乐竞演</div>
+                        <h3 class="variety-title">声生不息宝岛季</h3>
+                        <div class="variety-date">2025年</div>
+                        <p class="variety-description">在《声生不息宝岛季》中，马嘉祺凭借出色的演唱实力和舞台表现力，获得了<span
+                                class="highlight">最佳新人奖</span>。评委评价他"小马是无法忽视的一股后浪，没有他hold不住的歌"。</p>
+                        <div class="award-badge">
+                            <i class="material-icons">emoji_events</i>
+                            最佳新人奖
+                        </div>
+                    </div>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/83/8338c2c9.jpg" alt="歌手2025">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">音乐竞演</div>
+                        <h3 class="variety-title">歌手2025</h3>
+                        <div class="variety-date">2025年</div>
+                        <p class="variety-description">在《歌手2025》中，马嘉祺作为揭榜歌手表现出色，不仅赢过了白举纲，还引发了观众的热烈讨论。他在节目中展现了<span
+                                class="highlight">多样化的音乐风格</span>和强大的舞台掌控力。</p>
+                    </div>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/26/262a5a4c.jpg" alt="你好，星期六">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">娱乐互动</div>
+                        <h3 class="variety-title">你好，星期六</h3>
+                        <div class="variety-date">2025年</div>
+                        <p class="variety-description">在《你好，星期六》中，马嘉祺展现了<span
+                                class="highlight">幽默风趣</span>的一面，与谢娜、张真源等人组成的"大哥"队伍带来了许多笑点，展现了他在综艺节目中的轻松互动能力。</p>
+                    </div>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/23/2302eee3.jpg" alt="我就是演员第三季">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">演技竞演</div>
+                        <h3 class="variety-title">我就是演员第三季</h3>
+                        <div class="variety-date">2021年</div>
+                        <p class="variety-description">在浙江卫视演技竞演类励志综艺《我就是演员第三季》中，马嘉祺展现了<span
+                                class="highlight">扎实的表演功底</span>，台词表现获得好评，进一步证明了他作为演员的潜力。</p>
+                    </div>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/63/633d43d3.jpg" alt="少年梦游记">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">成长真人秀</div>
+                        <h3 class="variety-title">少年梦游记</h3>
+                        <div class="variety-date">2020年</div>
+                        <p class="variety-description">在成长类真人秀《少年梦游记》中，马嘉祺展现了<span
+                                class="highlight">真实自然</span>的一面，让观众看到了他作为年轻艺人的成长历程和追梦故事。</p>
+                    </div>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-image">
+                        <img src="https://sfile.chatglm.cn/moeSlide/image/e9/e926c6d5.jpg" alt="台风少年蜕变之战">
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <i class="material-icons">play_arrow</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="variety-details">
+                        <div class="variety-type">选秀竞演</div>
+                        <h3 class="variety-title">台风少年蜕变之战</h3>
+                        <div class="variety-date">2019年</div>
+                        <p class="variety-description">通过综艺节目《台风少年蜕变之战》，马嘉祺当选为组合时代少年团的<span
+                                class="highlight">C位与队长</span>，展现了他出色的综合实力和领导才能。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="moments-section">
+            <h2 class="moments-title">综艺精彩瞬间</h2>
+            <div class="moments-grid">
+                <div class="moment-card">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/3d/3dd9a837.jpg" alt="舞台表演瞬间">
+                    <div class="moment-overlay">
+                        <div class="moment-title">震撼舞台</div>
+                        <div class="moment-description">《声生不息》中的精彩演唱</div>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/49/495d76fb.jpg" alt="互动瞬间">
+                    <div class="moment-overlay">
+                        <div class="moment-title">幽默互动</div>
+                        <div class="moment-description">《你好，星期六》中的搞笑表现</div>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/d9/d9912918.jpg" alt="情感瞬间">
+                    <div class="moment-overlay">
+                        <div class="moment-title">情感表达</div>
+                        <div class="moment-description">《歌手2025》中的深情演绎</div>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <img src="https://sfile.chatglm.cn/moeSlide/image/1c/1c7a9896.jpg" alt="获奖瞬间">
+                    <div class="moment-overlay">
+                        <div class="moment-title">荣耀时刻</div>
+                        <div class="moment-description">《声生不息》获得最佳新人奖</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote">"综艺节目是展示真实自我的舞台，我希望通过不同的节目，让观众看到我多方面的一面，不仅仅是歌手和演员，更是一个真实的马嘉祺。"</div>
+            <div class="quote-author">— 马嘉祺</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="material-icons">music_note</i></a>
+                <a href="#"><i class="material-icons">videocam</i></a>
+                <a href="#"><i class="material-icons">photo_camera</i></a>
+                <a href="#"><i class="material-icons">chat</i></a>
+            </div>
+            <div class="copyright">
+                © 2025 马嘉祺官方网站 版权所有
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
